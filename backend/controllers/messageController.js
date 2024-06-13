@@ -44,8 +44,10 @@ export const getMessages = async (req, res)=>{
 
         let conversations = await Conversation.findOne({
             participants: {  $all: [senderId, receiverId] },
-        }).populate("messages"); // now it will store just messages objects instean of conversation objects. (conversation object has participant array and an array of message objects)
+        }).populate("messages"); // now it will store not references to message, but the messages themselves.
 
+        if(!conversations) res.status(200).json([]);
+        
         res.status(200).json(conversations.messages);
 
 

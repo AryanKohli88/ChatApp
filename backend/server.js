@@ -8,6 +8,7 @@ const cp = cookieParser();
 import connectToMongoDB from "./db/connection.js";
 import AuthRoutes from "./routes/authRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const port = process.env.PORT || 5000;
 
@@ -20,6 +21,7 @@ app.use(cp);
 // Middleware for Authentication related Routes
 app.use("/api/auth", AuthRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/", (req, res)=>{
     res.send("Hello World!");
